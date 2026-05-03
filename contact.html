@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Liên hệ - Gạo Khí Hậu KTNN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#f9f9f9",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e2e2e2",
+                      "secondary-fixed-dim": "#bec9c3",
+                      "on-primary-container": "#9fcfb2",
+                      "inverse-on-surface": "#f0f1f1",
+                      "surface-variant": "#e2e2e2",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#355848",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary-fixed-dim": "#a9cfbb",
+                      "on-secondary-fixed-variant": "#3f4945",
+                      "tertiary-fixed": "#c4ebd6",
+                      "on-background": "#1a1c1c",
+                      "surface-container": "#eeeeee",
+                      "secondary": "#56615c",
+                      "on-secondary-fixed": "#141e1a",
+                      "on-tertiary-container": "#a6cdb8",
+                      "primary-fixed": "#bceecf",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed-variant": "#2b4e3e",
+                      "on-tertiary-fixed": "#002115",
+                      "on-surface": "#1a1c1c",
+                      "surface-tint": "#3a674f",
+                      "outline": "#717973",
+                      "outline-variant": "#c0c9c1",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#f9f9f9",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#414943",
+                      "surface-container-high": "#e8e8e8",
+                      "inverse-surface": "#2f3131",
+                      "on-secondary-container": "#5c6762",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "primary": "#14422d",
+                      "tertiary": "#1e4132",
+                      "primary-container": "#2d5a43",
+                      "secondary-container": "#dae5df",
+                      "surface-dim": "#dadada",
+                      "inverse-primary": "#a1d1b4",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#224f39",
+                      "secondary-fixed": "#dae5df",
+                      "surface-container-low": "#f3f3f4",
+                      "on-primary-fixed": "#002112",
+                      "primary-fixed-dim": "#a1d1b4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "section-gap": "120px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "display-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-xl": [
+                              "64px",
+                              {
+                                      "lineHeight": "72px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 dark:border-slate-800/50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-xl shadow-[#2D5A43]/5 transition-all ease-in-out duration-300">
+    <div class="max-w-[1280px] mx-auto w-full px-6 md:px-12 flex justify-between items-center h-20 relative">
+        <!-- Logo -->
+        <div class="text-xl font-bold tracking-tight text-[#2D5A43] dark:text-emerald-500 z-10">
+            Gạo Khí Hậu
+        </div>
+
+        <!-- Menu đã căn giữa tuyệt đối -->
+        <nav class="hidden md:flex gap-8 font-medium absolute left-1/2 -translate-x-1/2">
+            <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="index.html">Trang Chủ</a>
+            <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="menu.html">Menu</a>
+            <a class="hover:text-emerald-800 transition-colors px-3 py-2 text-emerald-700 font-bold" href="contact.html">Liên hệ</a>
+        </nav>
+
+        <!-- Nút bên phải -->
+        <div class="z-10">
+            <button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform duration-300 hidden md:block">
+                Khám phá
+            </button>
+            <button class="md:hidden text-[#2D5A43]">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-primary mb-4">Đội ngũ hỗ trợ</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Vui lòng liên hệ với các đại diện của chúng tôi dưới đây.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto">
+<!-- Contact Card 1 -->
+<div class="bg-surface-container-lowest rounded-[24px] p-8 shadow-[0_20px_40px_-15px_rgba(45,90,67,0.05)] border border-white/50 backdrop-blur-md hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-6 bg-surface-container border-4 border-surface-container-lowest shadow-sm">
+<img alt="Chân dung Nguyễn Đỗ Việt Anh" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiaJeJkTcYtuK0zNmA27XSKDenkUIiw0roHXbyFTPG3HPmBvqXSyESIbZaX2WMbqFEbwOqCzawtiIJMe0qAiFW_dE8-GhwqyjWpugTI6hxx_JUCbvY0ESutElAVEZfQcgE-Cc0AicSKMxxJBDTr4S6Wk_9WMoikIzMuT6xohLX7mRgBOURf7hommVtYKYrwQB2lSrCobihcKIp7KXRhyFAbPVbf15aYWATYVDe95KuB1GN1lSdhZj4LgzL0HKXWbvzVa3UYOVkb3g">
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Nguyễn Đỗ Việt Anh</h2>
+<div class="flex items-center justify-center gap-2 text-on-surface-variant font-body-md text-body-md mb-8">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">phone</span>
+<span class="">0789037728</span>
+</div>
+<a class="mt-auto bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform duration-300 w-full md:w-auto" href="tel:0789037728">
+                    Liên hệ ngay
+                </a>
+</div>
+<!-- Contact Card 2 -->
+<div class="bg-surface-container-lowest rounded-[24px] p-8 shadow-[0_20px_40px_-15px_rgba(45,90,67,0.05)] border border-white/50 backdrop-blur-md hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-6 bg-surface-container border-4 border-surface-container-lowest shadow-sm">
+<img alt="Chân dung Ngô Thái Thiện" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugvG7bdaCRAQhJyX2OyOB17dlGOs8t_GGYppFwRU6DddxcnQaVcxjMxSgX5rUmELfWdgoLb13Cq60W3lBJSQYE1QTX8Yh5bVS7PpudqTTt43zlC6Z3wNpIbxeKnbBB6MAPu-sPtwlPNzzt-h3Qkj6PDptS4WOYfhgUskP8Kb6jIRVEgXurG2unCnVZKqbVYgjmUgWgbFRA2c5lcKE5YA2bgfntPLRGiXl9uT0JZ7Vo8xXhVVX7xMT2Blvd5eVF4rnh9d1Z3QtOBrg">
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Ngô Thái Thiện</h2>
+<div class="flex items-center justify-center gap-2 text-on-surface-variant font-body-md text-body-md mb-8">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">phone</span>
+<span class="">0846903222</span>
+</div>
+<a class="mt-auto bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform duration-300 w-full md:w-auto" href="tel:0846903222">
+                    Liên hệ ngay
+                </a>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-100 dark:border-slate-900 bg-white dark:bg-slate-950 opacity-100 mt-auto">
+<div class="max-w-[1280px] mx-auto py-12 px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="font-bold text-[#2D5A43] font-['Plus_Jakarta_Sans'] text-sm">
+                Gạo Khí Hậu KTNN
+            </div>
+<nav class="hidden md:flex gap-8 font-medium">
+    <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="index.html">Trang Chủ</a>
+    <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="menu.html">Menu</a>
+    <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="contact.html">Liên hệ</a>
+</nav>
+<div class="text-[#2D5A43] dark:text-emerald-400 font-['Plus_Jakarta_Sans'] text-sm text-center md:text-right">
+                © 2024 Gạo Khí Hậu KTNN&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . Vì một hành tinh xanh.
+            </div>
+</div>
+</footer>
+
+
+</body></html>
