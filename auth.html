@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác thực - Nhóm 2 KTNN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fbf9f5; }
+        .font-plus { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-emerald-100">
+        <div class="text-center mb-8">
+            <h1 id="auth-title" class="text-3xl font-bold text-emerald-900 font-plus">Đăng nhập</h1>
+            <p id="auth-desc" class="text-gray-500 mt-2">Vui lòng đăng nhập để tiếp tục</p>
+        </div>
+
+        <form id="auth-form" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Tên đăng nhập</label>
+                <input type="text" id="username" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Mật khẩu</label>
+                <input type="password" id="password" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+            </div>
+            <button type="submit" id="submit-btn" class="w-full bg-emerald-800 text-white py-3 rounded-lg font-semibold hover:bg-emerald-900 transition-colors shadow-lg">
+                Đăng nhập
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <button id="toggle-auth" class="text-emerald-700 font-medium hover:underline">
+                Chưa có tài khoản? Đăng ký ngay
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let isLogin = true;
+        const authTitle = document.getElementById('auth-title');
+        const authDesc = document.getElementById('auth-desc');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleBtn = document.getElementById('toggle-auth');
+        const form = document.getElementById('auth-form');
+
+        toggleBtn.onclick = () => {
+            isLogin = !isLogin;
+            authTitle.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
+            authDesc.innerText = isLogin ? 'Vui lòng đăng nhập để tiếp tục' : 'Tạo tài khoản mới cho bạn';
+            submitBtn.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
+            toggleBtn.innerText = isLogin ? 'Chưa có tài khoản? Đăng ký ngay' : 'Đã có tài khoản? Đăng nhập';
+        };
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (isLogin) {
+                const storedUser = JSON.parse(localStorage.getItem('userAccount'));
+                if (storedUser && storedUser.username === user && storedUser.password === pass) {
+                   sessionStorage.setItem('isLoggedIn', 'true');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Sai tài khoản hoặc mật khẩu!');
+                }
+            } else {
+                localStorage.setItem('userAccount', JSON.stringify({ username: user, password: pass }));
+                alert('Đăng ký thành công! Hãy đăng nhập.');
+                isLogin = false; toggleBtn.click(); // Chuyển sang đăng nhập
+            }
+        };
+    </script>
+</body>
+</html>
