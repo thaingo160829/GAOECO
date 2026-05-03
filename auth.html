@@ -40,40 +40,58 @@
     </div>
 
     <script>
-        let isLogin = true;
-        const authTitle = document.getElementById('auth-title');
-        const authDesc = document.getElementById('auth-desc');
-        const submitBtn = document.getElementById('submit-btn');
-        const toggleBtn = document.getElementById('toggle-auth');
-        const form = document.getElementById('auth-form');
+    let isLogin = true;
+    const authTitle = document.getElementById('auth-title');
+    const authDesc = document.getElementById('auth-desc');
+    const submitBtn = document.getElementById('submit-btn');
+    const toggleBtn = document.getElementById('toggle-auth');
+    const form = document.getElementById('auth-form');
 
-        toggleBtn.onclick = () => {
-            isLogin = !isLogin;
-            authTitle.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
-            authDesc.innerText = isLogin ? 'Vui lòng đăng nhập để tiếp tục' : 'Tạo tài khoản mới cho bạn';
-            submitBtn.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
-            toggleBtn.innerText = isLogin ? 'Chưa có tài khoản? Đăng ký ngay' : 'Đã có tài khoản? Đăng nhập';
-        };
+    // Hàm lấy danh sách tài khoản từ máy (nếu chưa có thì trả về mảng rỗng)
+    const getAccounts = () => JSON.parse(localStorage.getItem('userAccounts')) || [];
 
-        form.onsubmit = (e) => {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
+    toggleBtn.onclick = () => {
+        isLogin = !isLogin;
+        authTitle.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
+        authDesc.innerText = isLogin ? 'Vui lòng đăng nhập để tiếp tục' : 'Tạo tài khoản mới cho bạn';
+        submitBtn.innerText = isLogin ? 'Đăng nhập' : 'Đăng ký';
+        toggleBtn.innerText = isLogin ? 'Chưa có tài khoản? Đăng ký ngay' : 'Đã có tài khoản? Đăng nhập';
+    };
 
-            if (isLogin) {
-                const storedUser = JSON.parse(localStorage.getItem('userAccount'));
-                if (storedUser && storedUser.username === user && storedUser.password === pass) {
-                   sessionStorage.setItem('isLoggedIn', 'true');
-                    window.location.href = 'index.html';
-                } else {
-                    alert('Sai tài khoản hoặc mật khẩu!');
-                }
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        const user = document.getElementById('username').value.trim();
+        const pass = document.getElementById('password').value.trim();
+        let accounts = getAccounts();
+
+        if (isLogin) {
+            // LOGIC ĐĂNG NHẬP
+            const foundUser = accounts.find(acc => acc.username === user && acc.password === pass);
+            if (foundUser) {
+                // Đăng nhập đúng: Lưu trạng thái vào sessionStorage (thoát web là hết phiên làm việc)
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'index.html';
             } else {
-                localStorage.setItem('userAccount', JSON.stringify({ username: user, password: pass }));
-                alert('Đăng ký thành công! Hãy đăng nhập.');
-                isLogin = false; toggleBtn.click(); // Chuyển sang đăng nhập
+                alert('Tên đăng nhập hoặc mật khẩu không chính xác!');
             }
-        };
-    </script>
+        } else {
+            // LOGIC ĐĂNG KÝ
+            const isExisted = accounts.some(acc => acc.username === user);
+            
+            if (isExisted) {
+                alert('Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.');
+            } else {
+                // Lưu tài khoản mới vào mảng danh sách
+                accounts.push({ username: user, password: pass });
+                localStorage.setItem('userAccounts', JSON.stringify(accounts));
+                
+                alert('Đăng ký thành công! Bây giờ bạn có thể đăng nhập.');
+                // Tự động chuyển sang giao diện đăng nhập
+                isLogin = false; 
+                toggleBtn.click();
+            }
+        }
+    };
+</script>
 </body>
 </html>
