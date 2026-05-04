@@ -171,11 +171,12 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- Responsive Logic --- */
-        @media (max-width: 968px) {
-            .contact-grid, .form-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .nav-links, .btn-explore-more { display: none !important; } /* Ẩn nút Khám Phá trên Mobile */
-            .gradient-text { font-size: 50px; }
+      @media (max-width: 968px) {
+            .product-card-cinematic { flex-direction: column; }
+            .product-info { padding: 40px; }
+            .story-grid, .stats-grid { grid-template-columns: 1fr; }
+            .navbar { padding: 20px; }
+            .nav-links { display: none; }
         }
 
         footer { padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 3px; }
