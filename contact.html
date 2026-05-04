@@ -57,6 +57,25 @@
         .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--rice-gold); }
 
+        /* --- Mobile Back Button (Ẩn mặc định trên PC) --- */
+        .mobile-back-btn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            background: var(--agri-green);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(61, 103, 81, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
         /* --- Header Section --- */
         .contact-header { padding: 180px 5% 60px; text-align: center; position: relative; }
         .blur-orb {
@@ -116,7 +135,7 @@
         }
         .btn-cinematic:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(61,103,81,0.4); }
 
-        /* Nút Khám Phá Thêm - Mục tiêu ẩn trên Mobile */
+        /* Nút Khám Phá Thêm */
         .explore-wrapper { text-align: center; margin: 40px 0 80px; }
         .btn-explore-more {
             padding: 22px 55px;
@@ -138,12 +157,11 @@
             background: var(--agri-green);
             border-color: var(--rice-gold);
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(61, 103, 81, 0.4);
         }
 
         /* --- Trust Badges --- */
         .trust-badges { display: flex; justify-content: center; gap: 40px; margin: 40px 0 80px; flex-wrap: wrap; }
-        .badge-item { text-align: center; opacity: 0.6; transition: 0.3s; min-width: 120px; }
+        .badge-item { text-align: center; opacity: 0.6; min-width: 120px; }
         .badge-item span { font-size: 35px; display: block; margin-bottom: 8px; color: var(--rice-gold); }
         .badge-item p { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -157,7 +175,6 @@
             width: 100%; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1);
             padding: 20px; border-radius: 15px; color: #fff; font-family: var(--font-main); outline: none;
         }
-        input:focus, textarea:focus { border-color: var(--agri-green); }
         .full-width { grid-column: span 2; }
 
         /* --- FAQ Accordion --- */
@@ -170,30 +187,27 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition-smooth); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- RESPONSIVE LOGIC (Ẩn nút Khám Phá trên Mobile) --- */
+        /* --- RESPONSIVE LOGIC --- */
         @media (max-width: 968px) {
+            * { cursor: auto !important; } /* Khôi phục chuột mặc định trên mobile */
+            .custom-cursor { display: none !important; }
+            
             .contact-grid, .form-grid { grid-template-columns: 1fr; }
             .full-width { grid-column: span 1; }
             .nav-links { display: none !important; }
-            .gradient-text { font-size: 50px; }
+            .gradient-text { font-size: 45px; }
+
+            /* Nút Back Mobile - HIỂN THỊ */
+            .mobile-back-btn { display: flex !important; }
             
             /* Triệt tiêu nút khám phá hoàn toàn trên Mobile */
             .explore-wrapper, .btn-explore-more { 
                 display: none !important; 
                 visibility: hidden !important; 
-                opacity: 0 !important; 
-                pointer-events: none !important; 
                 height: 0 !important; 
                 margin: 0 !important; 
                 padding: 0 !important;
             }
-        }
-         @media (max-width: 968px) {
-            .product-card-cinematic { flex-direction: column; }
-            .product-info { padding: 40px; }
-            .story-grid, .stats-grid { grid-template-columns: 1fr; }
-            .navbar { padding: 20px; }
-            .nav-links { display: none; }
         }
 
         footer { padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 3px; }
@@ -202,6 +216,11 @@
 <body>
 
     <div class="custom-cursor"></div>
+
+    <!-- Nút quay về Menu cho Mobile -->
+    <a href="menu.html" class="mobile-back-btn" title="Quay lại Menu">
+        <span class="material-symbols-outlined" style="font-size: 32px;">restaurant_menu</span>
+    </a>
 
     <nav class="navbar" id="main-nav">
         <a href="index.html" class="logo magnet">GẠO<span>ECO</span></a>
@@ -261,24 +280,22 @@
         </div>
 
         <!-- Trust Badges -->
-   
+      
 
         <!-- Form Section -->
         <div class="form-section reveal">
-            <h3 class="gradient-text" style="font-size: 38px; text-align: center;">Gửi lời nhắn cho chúng tôi tại đây</h3>
+            <h3 class="gradient-text" style="font-size: 38px; text-align: center;">Gửi lời nhắn tới chúng tôi</h3>
             <form class="form-grid">
                 <input type="text" placeholder="Tên của bạn" required>
                 <input type="email" placeholder="Email liên hệ" required>
                 <select class="full-width">
                     <option value="retail">Đăng ký mua lẻ</option>
                     <option value="wholesale">Hợp tác đại lý</option>
-                    <option value="press">Truyền thông & Báo chí</option>
                 </select>
                 <textarea class="full-width" rows="5" placeholder="Lời nhắn của bạn..."></textarea>
                 <div class="full-width" style="text-align: center;">
-                    <button type="submit" class="btn-cinematic magnet" style="border: none; cursor: pointer; padding: 20px 60px;">
+                    <button type="submit" class="btn-cinematic" style="border: none; cursor: pointer; padding: 20px 60px;">
                         GỬI TIN NHẮN
-                        <span class="material-symbols-outlined">send</span>
                     </button>
                 </div>
             </form>
@@ -288,11 +305,11 @@
         <div class="faq-section reveal">
             <h3 class="gradient-text" style="font-size: 32px; text-align: center; margin-bottom: 30px;">Giải đáp nhanh</h3>
             <div class="faq-item">
-                <div class="faq-question">Làm sao để biết gạo có chất lượng ECO? <span class="material-symbols-outlined">expand_more</span></div>
-                <div class="faq-answer">Bạn có thể quét mã QR trên bao bì để xem toàn bộ nhật ký canh tác và các chỉ số giảm phát thải của lô gạo đó.</div>
+                <div class="faq-question">Làm sao để biết gạo có chất lượng ra sao? <span class="material-symbols-outlined">expand_more</span></div>
+                <div class="faq-answer">Bạn có thể quét mã QR trên bao bì để xem toàn bộ nhật ký canh tác và các chỉ số giảm phát thải.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Thời gian nhận được gạo là bao lâu? <span class="material-symbols-outlined">expand_more</span></div>
+                <div class="faq-question">Thời gian nhận được hàng là bao lâu? <span class="material-symbols-outlined">expand_more</span></div>
                 <div class="faq-answer">Tại Hà Nội, chúng tôi giao trong vòng 24h. Các khu vực khác từ 2-4 ngày làm việc.</div>
             </div>
         </div>
@@ -300,7 +317,7 @@
     </main>
 
     <footer>
-        © 2026 GẠO ECO KTNN • HÀNH TRÌNH VÌ MỘT HÀNH TINH XANH
+        © 2026 GẠO ECO KTNN • HÀNH TRÌNH VÌ MỘT HÀNH TINH XANH[cite: 2]
     </footer>
 
     <script>
