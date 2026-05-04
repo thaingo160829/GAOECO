@@ -39,7 +39,7 @@
             mix-blend-mode: difference; transition: transform 0.15s ease-out;
         }
 
-        /* --- Navbar Glassmorphism (Đã sửa lỗi căn lề) --- */
+        /* --- Navbar Glassmorphism --- */
         .navbar {
             display: flex; 
             justify-content: space-between; 
@@ -60,7 +60,7 @@
             font-size: 32px; 
             text-decoration: none; 
             color: #fff;
-            flex: 0 0 auto; /* Giữ logo cố định kích thước bên trái */
+            flex: 0 0 auto;
         }
         .logo span { color: var(--agri-green); }
         
@@ -68,13 +68,13 @@
             display: flex; 
             gap: 40px; 
             list-style: none;
-            flex: 1; /* Chiếm hết không gian còn lại để căn giữa */
-            justify-content: center; /* Căn menu ra chính giữa */
+            flex: 1; 
+            justify-content: center; 
         }
         .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--rice-gold); }
 
-        /* --- Hero Section với Ảnh Nền Tĩnh --- */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
             text-align: center; position: relative; overflow: hidden;
@@ -134,18 +134,27 @@
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* --- Section Styling --- */
-        .section-container { padding: 150px 5%; max-width: 1300px; margin: 0 auto; }
+        .section-container { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
         
-        /* --- Luxury Agri Cards --- */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        /* --- Luxury Agri Cards (Sửa lại Grid để xếp hàng ngang) --- */
+        .grid-3 { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); /* Ép buộc 3 cột trên desktop */
+            gap: 25px; 
+        }
+
         .luxury-card {
             background: var(--glass); border: 1px solid rgba(255,255,255,0.05);
-            padding: 60px; border-radius: 40px; backdrop-filter: blur(15px);
+            padding: 40px; border-radius: 40px; backdrop-filter: blur(15px);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
+
         .luxury-card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--agri-green); box-shadow: 0 30px 80px rgba(61,103,81,0.2); }
 
-        /* --- D2C Box (3D) --- */
+        /* --- D2C Box --- */
         .d2c-box {
             background: #111; border-radius: 60px; padding: 80px;
             display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -168,23 +177,28 @@
         .reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        footer { padding: 100px 5%; border-top: 1px solid rgba(255,255,255,0.05); background: #080808; display: flex; justify-content: space-between; align-items: flex-end; }
-        .footer-logo { font-family: var(--font-heading); font-size: 60px; opacity: 0.3; }
-
-       @media (max-width: 968px) {
-            .d2c-box { grid-template-columns: 1fr; padding: 40px; }
-            
-            /* Dán đoạn này vào để ẩn Menu/Trang chủ/Liên hệ trên mobile */
-            .nav-links, 
-            .navbar div[style*="width: 130px"] { 
-                display: none !important; 
-            }
-            
-            /* Hiện nút quay về */
-            .mobile-back-btn { display: flex !important; }
+        /* --- Footer --- */
+        footer { 
+            padding: 80px 5%; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            background: #080808; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center;
         }
+        .footer-logo { font-family: var(--font-heading); font-size: 80px; opacity: 0.2; margin-bottom: 20px; letter-spacing: 5px; }
+        .footer-info p { opacity: 0.4; font-size: 14px; margin-bottom: 30px; }
+        .footer-socials { display: flex; gap: 40px; justify-content: center; }
+        .footer-socials a { color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; }
+        .footer-socials a:hover { opacity: 1; color: var(--rice-gold); }
 
-      
+        /* --- Responsive Queries --- */
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: 1fr; gap: 30px; } /* Mobile & Tablet: Xếp hàng dọc */
+            .d2c-box { grid-template-columns: 1fr; padding: 40px; }
+            .nav-links { display: none; } /* Ẩn menu chính trên mobile để tránh chật chội */
+        }
     </style>
 </head>
 <body>
@@ -193,13 +207,11 @@
 
     <nav class="navbar" id="main-nav">
         <a href="index.html" class="logo magnet">GẠO<span>ECO</span></a>
-        <!-- Đã căn giữa tuyệt đối menu tại đây -->
         <ul class="nav-links">
             <li><a href="index.html" class="active">Trang Chủ</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="contact.html">Liên Hệ</a></li>
         </ul>
-        <!-- Placeholder cho phía bên phải để cân bằng với Logo bên trái -->
         <div style="width: 130px; display: flex; justify-content: flex-end;">
             <a href="menu.html" class="magnet" style="color: var(--rice-gold); text-decoration: none; font-size: 12px; font-weight: 600; border: 1px solid var(--rice-gold); padding: 8px 15px; border-radius: 99px;">D2C SHOP</a>
         </div>
@@ -222,7 +234,7 @@
                 </p>
                 <div style="display: flex; gap: 20px; justify-content: center;">
                     <a href="menu.html" class="btn-cinematic magnet">MUA NGAY</a>
-                    
+                    <a href="contact.html" style="padding: 22px 50px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); color: #fff; text-decoration: none; display: flex; align-items: center; backdrop-filter: blur(10px);" class="magnet">LIÊN HỆ</a>
                 </div>
             </div>
         </section>
@@ -243,18 +255,18 @@
         <section class="section-container grid-3">
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">eco</span>
-                <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Giảm phát thải</h3>
-                <p>Quy trình canh tác tiên tiến giúp giảm thiểu tối đa lượng khí nhà kính, bảo vệ môi trường và ứng phó với biến đổi khí hậu[cite: 9].</p>
+                <h3 style="font-family: var(--font-heading); font-size: 32px; margin: 20px 0;">Giảm phát thải</h3>
+                <p style="font-size: 15px; opacity: 0.8;">Quy trình canh tác tiên tiến giúp giảm thiểu tối đa lượng khí nhà kính, bảo vệ môi trường và ứng phó với biến đổi khí hậu.</p>
             </div>
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">verified</span>
-                <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Meal Prep & Eat Clean</h3>
-                <p>Phù hợp hoàn hảo cho chế độ ăn uống lành mạnh, dễ dàng chuẩn bị bữa ăn dinh dưỡng mỗi ngày[cite: 9].</p>
+                <h3 style="font-family: var(--font-heading); font-size: 32px; margin: 20px 0;">Meal Prep & Eat Clean</h3>
+                <p style="font-size: 15px; opacity: 0.8;">Phù hợp hoàn hảo cho chế độ ăn uống lành mạnh, dễ dàng chuẩn bị bữa ăn dinh dưỡng mỗi ngày.</p>
             </div>
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">handshake</span>
-                <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Hợp tác xã xanh</h3>
-                <p>Kết nối trực tiếp không qua trung gian, đảm bảo chất lượng, minh bạch nguồn gốc và tăng thu nhập cho nông dân.</p>
+                <h3 style="font-family: var(--font-heading); font-size: 32px; margin: 20px 0;">Hợp tác xã xanh</h3>
+                <p style="font-size: 15px; opacity: 0.8;">Kết nối trực tiếp không qua trung gian, đảm bảo chất lượng, minh bạch nguồn gốc và tăng thu nhập cho nông dân.</p>
             </div>
         </section>
 
@@ -262,7 +274,7 @@
             <div class="d2c-box reveal">
                 <div class="info-side">
                     <span style="color: var(--agri-green); letter-spacing: 3px; font-size: 12px; font-weight: 700;">MÔ HÌNH D2C</span>
-                    <h2 class="gradient-text" style="font-size: 64px; margin-top: 20px;">Minh bạch   <br> & Tiện lợi</h2>
+                    <h2 class="gradient-text" style="font-size: 64px; margin-top: 20px;">Minh bạch <br> & Tiện lợi</h2>
                     <p style="margin: 40px 0; font-size: 18px; opacity: 0.7;">
                         Chúng tôi xây dựng một chuỗi giá trị bền vững nơi bạn có thể đồng hành cùng các hợp tác xã nông nghiệp xanh.
                     </p>
@@ -280,26 +292,24 @@
     </main>
 
     <footer>
-        <div class="footer-logo">KTNN.</div>
-        <div style="text-align: right;">
-            <p style="opacity: 0.3; margin-bottom: 20px;">© 2026 Climate Rice Brand. Vì một hành tinh xanh.</p>
-            <div style="display: flex; gap: 30px; justify-content: flex-end;">
-                <a href="#" style="color: #fff; text-decoration: none; font-size: 12px;">FACEBOOK</a>
-                <a href="#" style="color: #fff; text-decoration: none; font-size: 12px;">INSTAGRAM</a>
-                <a href="contact.html" style="color: #fff; text-decoration: none; font-size: 12px;">LIÊN HỆ</a>
+        <div class="footer-logo reveal">KTNN.</div>
+        <div class="footer-info reveal">
+            <p>© 2026 Climate Rice Brand. Vì một hành tinh xanh.</p>
+            <div class="footer-socials">
+                <a href="#" class="magnet">FACEBOOK</a>
+                <a href="#" class="magnet">INSTAGRAM</a>
+                <a href="contact.html" class="magnet">LIÊN HỆ</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // 1. Custom Cursor logic
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 2. Magnetic Hover Effect
         document.querySelectorAll('.magnet').forEach((el) => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
@@ -312,7 +322,6 @@
             });
         });
 
-        // 3. Scroll Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -320,7 +329,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 4. Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
             if (window.scrollY > 100) nav.classList.add('scrolled');
