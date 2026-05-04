@@ -194,11 +194,40 @@
         /* --- Footer --- */
         footer { padding: 80px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 3px; }
 
-        @media (max-width: 768px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .gradient-text { font-size: 48px; }
-        }
+        /* Ẩn các thành phần trên Mobile theo yêu cầu */
+@media (max-width: 768px) {
+    /* File contact: Ẩn nút Khám phá */
+    .btn-explore-more { display: none !important; }
+
+    /* File index: Ẩn các liên kết điều hướng trên navbar */
+    .nav-links, .navbar .magnet[style*="border: 1px solid var(--rice-gold)"] { 
+        display: none !important; 
+    }
+
+    /* Hiện nút quay về trên Mobile */
+    .mobile-back-btn {
+        display: flex !important;
+    }
+}
+
+/* Thiết kế nút quay về (Back Button) */
+.mobile-back-btn {
+    display: none; /* Mặc định ẩn trên desktop */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--agri-green);
+    color: #fff;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+}
     </style>
 </head>
 <body>
