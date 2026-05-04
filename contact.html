@@ -1,253 +1,342 @@
-<!DOCTYPE html><html lang="vi"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Liên hệ - Gạo ECO KTNN</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "background": "#f9f9f9",
-                      "on-primary": "#ffffff",
-                      "surface-container-highest": "#e2e2e2",
-                      "secondary-fixed-dim": "#bec9c3",
-                      "on-primary-container": "#9fcfb2",
-                      "inverse-on-surface": "#f0f1f1",
-                      "surface-variant": "#e2e2e2",
-                      "surface-container-lowest": "#ffffff",
-                      "tertiary-container": "#355848",
-                      "surface-bright": "#f9f9f9",
-                      "tertiary-fixed-dim": "#a9cfbb",
-                      "on-secondary-fixed-variant": "#3f4945",
-                      "tertiary-fixed": "#c4ebd6",
-                      "on-background": "#1a1c1c",
-                      "surface-container": "#eeeeee",
-                      "secondary": "#56615c",
-                      "on-secondary-fixed": "#141e1a",
-                      "on-tertiary-container": "#a6cdb8",
-                      "primary-fixed": "#bceecf",
-                      "on-error": "#ffffff",
-                      "on-tertiary-fixed-variant": "#2b4e3e",
-                      "on-tertiary-fixed": "#002115",
-                      "on-surface": "#1a1c1c",
-                      "surface-tint": "#3a674f",
-                      "outline": "#717973",
-                      "outline-variant": "#c0c9c1",
-                      "on-tertiary": "#ffffff",
-                      "surface": "#f9f9f9",
-                      "on-secondary": "#ffffff",
-                      "on-surface-variant": "#414943",
-                      "surface-container-high": "#e8e8e8",
-                      "inverse-surface": "#2f3131",
-                      "on-secondary-container": "#5c6762",
-                      "error": "#ba1a1a",
-                      "on-error-container": "#93000a",
-                      "primary": "#14422d",
-                      "tertiary": "#1e4132",
-                      "primary-container": "#2d5a43",
-                      "secondary-container": "#dae5df",
-                      "surface-dim": "#dadada",
-                      "inverse-primary": "#a1d1b4",
-                      "error-container": "#ffdad6",
-                      "on-primary-fixed-variant": "#224f39",
-                      "secondary-fixed": "#dae5df",
-                      "surface-container-low": "#f3f3f4",
-                      "on-primary-fixed": "#002112",
-                      "primary-fixed-dim": "#a1d1b4"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "margin-mobile": "16px",
-                      "gutter": "24px",
-                      "container-max": "1280px",
-                      "unit": "8px",
-                      "section-gap": "120px",
-                      "margin-desktop": "48px"
-              },
-              "fontFamily": {
-                      "headline-md": [
-                              "Plus Jakarta Sans"
-                      ],
-                      "label-md": [
-                              "Inter"
-                      ],
-                      "display-xl": [
-                              "Plus Jakarta Sans"
-                      ],
-                      "display-lg": [
-                              "Plus Jakarta Sans"
-                      ],
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "headline-lg": [
-                              "Plus Jakarta Sans"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ]
-              },
-              "fontSize": {
-                      "headline-md": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "label-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "20px",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "display-xl": [
-                              "64px",
-                              {
-                                      "lineHeight": "72px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "display-lg": [
-                              "48px",
-                              {
-                                      "lineHeight": "56px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "body-md": [
-                              "16px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "40px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-lg": [
-                              "18px",
-                              {
-                                      "lineHeight": "28px",
-                                      "fontWeight": "400"
-                              }
-                      ]
-              }
-            },
-          }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Liên hệ - Gạo ECO KTNN Cinematic</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0C0C0C;
+            --agri-green: #3D6751;
+            --natural-cream: #F5F3EE;
+            --rice-gold: #D9B86A;
+            --glass: rgba(255, 255, 255, 0.03);
+            --font-heading: 'Instrument Serif', serif;
+            --font-main: 'Inter', sans-serif;
         }
-      </script>
-</head>
-<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
-<!-- TopAppBar -->
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 border-b border-white/20 dark:border-slate-800/50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-xl shadow-[#2D5A43]/5 transition-all ease-in-out duration-300">
-    <div class="max-w-[1280px] mx-auto w-full px-6 md:px-12 flex justify-between items-center h-20 relative">
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--primary-dark); 
+            color: var(--natural-cream); 
+            font-family: var(--font-main); 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Custom Cursor --- */
+        .custom-cursor {
+            width: 20px; height: 20px; background: #fff; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            mix-blend-mode: difference; transition: transform 0.15s ease-out;
+        }
+
+        /* --- Cinematic Navbar --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 30px 5%; position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000; backdrop-filter: blur(20px); 
+            background: rgba(12, 12, 12, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .navbar.scrolled { padding: 15px 5%; background: rgba(12, 12, 12, 0.8); }
         
-        <!-- Nút Back cho Mobile (ẩn trên Desktop) -->
-        <div class="flex items-center gap-2 md:hidden z-10">
-            <a href="index.html" class="text-[#2D5A43] flex items-center justify-center">
-                <span class="material-symbols-outlined">arrow_back</span>
+        .logo { font-family: var(--font-heading); font-size: 32px; text-decoration: none; color: #fff; }
+        .logo span { color: var(--agri-green); }
+        
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--rice-gold); }
+
+        /* --- Header Section --- */
+        .contact-header {
+            padding: 180px 5% 60px;
+            text-align: center;
+            position: relative;
+        }
+        .blur-orb {
+            position: absolute; width: 500px; height: 500px; border-radius: 50%;
+            background: var(--agri-green); filter: blur(150px); opacity: 0.15;
+            top: 0%; left: 50%; transform: translateX(-50%); z-index: -1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(180deg, #FFFFFF 0%, #D7E2EA 45%, #8FAE9D 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-family: var(--font-heading); font-size: clamp(40px, 7vw, 90px);
+            line-height: 1.1; margin-bottom: 20px;
+        }
+
+        /* --- Contact Grid --- */
+        .contact-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 5% 100px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        /* --- 3D Contact Card --- */
+        .contact-card-3d {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: transform 0.1s ease-out, box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .contact-card-3d:hover {
+            border-color: rgba(61, 103, 81, 0.3);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .avatar-container {
+            width: 160px; height: 160px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, var(--agri-green), var(--rice-gold));
+            transform: translateZ(50px); /* 3D Depth */
+            overflow: hidden;
+        }
+        .avatar-container img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-dark);
+        }
+
+        .info-wrap { transform: translateZ(30px); }
+        .member-name {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .member-role {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--agri-green);
+            margin-bottom: 25px;
+            display: block;
+        }
+        .member-phone {
+            font-size: 20px;
+            color: var(--rice-gold);
+            text-decoration: none;
+            margin-bottom: 40px;
+            display: block;
+            font-weight: 300;
+        }
+
+        /* --- Buttons --- */
+        .btn-contact {
+            background: linear-gradient(123deg, #1A2D23 7%, #3D6751 37%, #6E9C7D 72%, #D9B86A 100%);
+            color: #fff; padding: 15px 40px; border-radius: 999px;
+            text-decoration: none; font-weight: 600; display: inline-flex;
+            align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            transform: translateZ(40px);
+        }
+        .btn-contact:hover {
+            transform: translateZ(60px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(61, 103, 81, 0.3);
+        }
+
+        /* Nút Khám Phá Thêm - Cinematic Style */
+        .btn-explore-more {
+            margin-top: 60px;
+            padding: 20px 50px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--natural-cream);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .btn-explore-more:hover {
+            background: var(--agri-green);
+            border-color: var(--rice-gold);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(61, 103, 81, 0.4);
+            color: #fff;
+        }
+
+        /* --- Reveal & Animation --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Footer --- */
+        footer { padding: 80px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.4; font-size: 11px; letter-spacing: 3px; }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .gradient-text { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+
+    <nav class="navbar" id="main-nav">
+        <a href="index.html" class="logo magnet">GẠO<span>ECO</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="menu.html">Sản Phẩm</a></li>
+            <li><a href="contact.html" class="active">Liên Hệ</a></li>
+        </ul>
+        <div style="width: 50px;"></div>
+    </nav>
+
+    <header class="contact-header">
+        <div class="blur-orb"></div>
+        <h1 class="gradient-text reveal">Kết Nối Đồng Hành</h1>
+        <p class="reveal" style="max-width: 600px; margin: 0 auto; opacity: 0.7;">
+            Đội ngũ sản xuất Gạo ECO luôn sẵn sàng lắng nghe ý kiến và hỗ trợ mọi nhu cầu của bạn.
+        </p>
+    </header>
+
+    <main class="contact-container">
+        <div class="contact-grid">
+            <!-- Thành viên 1: Việt Anh -->
+            <div class="contact-card-3d reveal tilt-target">
+                <div class="avatar-container">
+                    <!-- Trích xuất ảnh avt1.jpg -->
+                    <img src="avt1.jpg" alt="Nguyễn Đỗ Việt Anh">
+                </div>
+                <div class="info-wrap">
+                    <span class="member-role">Quản lý dự án</span>
+                    <h2 class="member-name">Nguyễn Đỗ Việt Anh</h2>
+                    <a href="tel:0789037728" class="member-phone">0789 037 728</a>
+                    <a href="tel:0789037728" class="btn-contact magnet">
+                        <span class="material-symbols-outlined">call</span>
+                        LIÊN HỆ NGAY
+                    </a>
+                </div>
+            </div>
+
+            <!-- Thành viên 2: Thái Thiện -->
+            <div class="contact-card-3d reveal tilt-target">
+                <div class="avatar-container">
+                    <!-- Trích xuất ảnh avt2.jpg -->
+                    <img src="avt2.jpg" alt="Ngô Thái Thiện">
+                </div>
+                <div class="info-wrap">
+                    <span class="member-role">Phát triển sản phẩm</span>
+                    <h2 class="member-name">Ngô Thái Thiện</h2>
+                    <a href="tel:0846903222" class="member-phone">0846 903 222</a>
+                    <a href="tel:0846903222" class="btn-contact magnet">
+                        <span class="material-symbols-outlined">chat_bubble</span>
+                        ZALO HỖ TRỢ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Nút Khám Phá Thêm -->
+        <div class="reveal text-center">
+            <a href="https://canva.link/erufg597smo417q" target="_blank" class="btn-explore-more magnet">
+                KHÁM PHÁ THÊM
+                <span class="material-symbols-outlined">arrow_outward</span>
             </a>
         </div>
 
-        <!-- Logo (Căn giữa trên mobile để cân đối, hoặc giữ nguyên tùy bạn) -->
-        <div class="text-xl font-bold tracking-tight text-[#2D5A43] dark:text-emerald-500 z-10">
-            Gạo ECO
+        <!-- Secondary Info -->
+        <div class="reveal text-center" style="margin-top: 100px; padding: 40px; background: var(--glass); border-radius: 30px;">
+            <p style="font-size: 14px; letter-spacing: 1px; color: rgba(255,255,255,0.5);">
+                Địa chỉ văn phòng: Đại học Kinh tế Quốc dân (NEU), Hà Nội.
+            </p>
         </div>
+    </main>
 
-        <!-- Menu Desktop (Căn giữa tuyệt đối) -->
-        <nav class="hidden md:flex gap-8 font-medium absolute left-1/2 -translate-x-1/2">
-            <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="index.html">Trang Chủ</a>
-            <a class="hover:text-emerald-800 transition-colors px-3 py-2" href="menu.html">Menu</a>
-            <a class="hover:text-emerald-800 transition-colors px-3 py-2 text-emerald-700 font-bold" href="contact.html">Liên hệ</a>
-        </nav>
+    <footer>
+        © 2026 GẠO ECO KTNN • HÀNH TRÌNH VÌ MỘT HÀNH TINH XANH
+    </footer>
 
-        <!-- Cụm nút bên phải -->
-        <div class="z-10 flex items-center">
-           <a href="https://www.canva.com/design/DAHIlMfclw8/f3mvPUeNrxUcTQ16AvzHGA/edit" 
-   target="_blank" 
-   class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform duration-300 hidden md:block flex items-center justify-center text-center">
-    Khám phá
-</a>
-            <!-- Menu Hamburger cho Mobile -->
-            <button class="md:hidden text-[#2D5A43] ml-4">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-        </div>
-    </div>
-</header>
-<!-- Main Content -->
-<main class="flex-grow pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
-<div class="text-center mb-16">
-<h1 class="font-display-lg text-display-lg text-primary mb-4">Đội ngũ hỗ trợ</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Vui lòng liên hệ với các đại diện của chúng tôi dưới đây.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto">
-    <!-- Card 1 -->
-    <div class="bg-surface-container-lowest rounded-[24px] p-8 shadow-sm border border-white/50 flex flex-col items-center text-center">
-        <div class="w-32 h-32 rounded-full overflow-hidden mb-6 bg-gray-200 border-4 border-white shadow-sm relative">
-            <img src="avt1.jpg" 
-                 alt="Nguyễn Đỗ Việt Anh" 
-                 class="absolute inset-0 w-full h-full object-cover">
-        </div>
-        <h2 class="font-headline-md text-headline-md text-primary mb-2">Nguyễn Đỗ Việt Anh</h2>
-        <p class="text-on-surface-variant mb-8">0789037728</p>
-        <a class="bg-primary text-on-primary px-8 py-3 rounded-lg w-full md:w-auto" href="tel:0789037728">Liên hệ ngay</a>
-    </div>
+    <script>
+        // 1. Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-    <!-- Card 2 -->
-    <div class="bg-surface-container-lowest rounded-[24px] p-8 shadow-sm border border-white/50 flex flex-col items-center text-center">
-        <div class="w-32 h-32 rounded-full overflow-hidden mb-6 bg-gray-200 border-4 border-white shadow-sm relative">
-            <img src="avt2.jpg" 
-                 alt="Ngô Thái Thiện" 
-                 class="absolute inset-0 w-full h-full object-cover">
-        </div>
-        <h2 class="font-headline-md text-headline-md text-primary mb-2">Ngô Thái Thiện</h2>
-        <p class="text-on-surface-variant mb-8">0846903222</p>
-        <a class="bg-primary text-on-primary px-8 py-3 rounded-lg w-full md:w-auto" href="tel:0846903222">Liên hệ ngay</a>
-    </div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="w-full border-t border-slate-100 dark:border-slate-900 bg-white dark:bg-slate-950 opacity-100 mt-auto">
-<div class="max-w-[1280px] mx-auto py-12 px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="font-bold text-[#2D5A43] font-['Plus_Jakarta_Sans'] text-sm">
-                Gạo ECO KTNN
-            </div>
-<div class="text-[#2D5A43] dark:text-emerald-400 font-['Plus_Jakarta_Sans'] text-sm text-center md:text-right">
-                © 2024 Gạo ECO KTNN&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . Vì một hành tinh xanh.
-            </div>
-</div>
-</footer>
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+        // 2. Intersection Observer (Reveal)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 3. 3D Tilt Effect
+        const tiltCards = document.querySelectorAll('.tilt-target');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
             
-            // Code xử lý nút Đăng xuất và Popup thông báo "Bạn hãy tạo tài khoản"
-            // (Dán đoạn mã JavaScript mình vừa gửi ở câu trước vào đây)
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+        // 4. Magnetic Buttons
+        document.querySelectorAll('.magnet').forEach((el) => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = `translate(0,0)`;
+            });
+        });
+
+        // 5. Navbar Scroll Logic
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
     </script>
 </body>
 </html>
-
-
-</body></html>
