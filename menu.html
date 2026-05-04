@@ -155,15 +155,13 @@
 
         footer { padding: 80px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.5; font-size: 12px; letter-spacing: 2px; }
 
-    @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .gradient-text { font-size: 48px; }
-
-    /* --- THÊM VÀO ĐÂY --- */
-    .btn-explore-more { display: none !important; } /* Ẩn chữ Khám phá */
-    .mobile-back-btn { display: flex !important; } /* Hiện nút quay về */
-}
+        @media (max-width: 968px) {
+            .product-card-cinematic { flex-direction: column; }
+            .product-image-wrap { height: 350px; }
+            .product-info { padding: 40px; }
+            .navbar { padding: 20px; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -278,8 +276,5 @@
             }
         });
     </script>
-    <a href="index.html" class="mobile-back-btn">
-    <span class="material-symbols-outlined">arrow_back</span>
-</a>
 </body>
 </html>
