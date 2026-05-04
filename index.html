@@ -39,20 +39,38 @@
             mix-blend-mode: difference; transition: transform 0.15s ease-out;
         }
 
-        /* --- Navbar Glassmorphism --- */
+        /* --- Navbar Glassmorphism (Đã sửa lỗi căn lề) --- */
         .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 30px 5%; position: fixed; top: 0; left: 0; right: 0;
-            z-index: 1000; backdrop-filter: blur(20px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 30px 5%; 
+            position: fixed; 
+            top: 0; left: 0; right: 0;
+            z-index: 1000; 
+            backdrop-filter: blur(20px); 
             background: rgba(255, 255, 255, 0.08);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .navbar.scrolled { padding: 15px 5%; background: rgba(12, 12, 12, 0.85); backdrop-filter: blur(40px); }
-        .logo { font-family: var(--font-heading); font-size: 32px; text-decoration: none; color: #fff; }
+        
+        .logo { 
+            font-family: var(--font-heading); 
+            font-size: 32px; 
+            text-decoration: none; 
+            color: #fff;
+            flex: 0 0 auto; /* Giữ logo cố định kích thước bên trái */
+        }
         .logo span { color: var(--agri-green); }
         
-        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links { 
+            display: flex; 
+            gap: 40px; 
+            list-style: none;
+            flex: 1; /* Chiếm hết không gian còn lại để căn giữa */
+            justify-content: center; /* Căn menu ra chính giữa */
+        }
         .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--rice-gold); }
 
@@ -69,7 +87,6 @@
             background-color: #000;
         }
         
-        /* Hiệu ứng zoom nhẹ cho ảnh tĩnh để tạo cảm giác sống động */
         .hero-static-img { 
             width: 100%; 
             height: 100%; 
@@ -156,7 +173,7 @@
 
         @media (max-width: 968px) {
             .d2c-box { grid-template-columns: 1fr; padding: 40px; }
-            .nav-links { display: none; }
+            .nav-links { gap: 20px; } /* Giảm gap cho tablet */
         }
     </style>
 </head>
@@ -166,12 +183,16 @@
 
     <nav class="navbar" id="main-nav">
         <a href="index.html" class="logo magnet">GẠO<span>ECO</span></a>
+        <!-- Đã căn giữa tuyệt đối menu tại đây -->
         <ul class="nav-links">
             <li><a href="index.html" class="active">Trang Chủ</a></li>
-            <li><a href="menu.html">Sản Phẩm</a></li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="contact.html">Liên Hệ</a></li>
         </ul>
-        
+        <!-- Placeholder cho phía bên phải để cân bằng với Logo bên trái -->
+        <div style="width: 130px; display: flex; justify-content: flex-end;">
+            <a href="menu.html" class="magnet" style="color: var(--rice-gold); text-decoration: none; font-size: 12px; font-weight: 600; border: 1px solid var(--rice-gold); padding: 8px 15px; border-radius: 99px;">D2C SHOP</a>
+        </div>
     </nav>
 
     <main>
@@ -187,7 +208,7 @@
             <div class="reveal">
                 <h1 class="gradient-text">ECO Rice,<br>Build Eternal.</h1>
                 <p style="max-width: 600px; margin: 30px auto; font-size: 20px; opacity: 0.9; text-shadow: 0 2px 15px rgba(0,0,0,0.8);">
-                    Canh tác giảm phát thải, truy xuất dấu chân carbon và phân phối trực tiếp từ hợp tác xã đến bàn ăn của bạn.
+                    Canh tác giảm phát thải, truy xuất dấu chân carbon và phân phối trực tiếp từ hợp tác xã đến bàn ăn của bạn[cite: 9].
                 </p>
                 <div style="display: flex; gap: 20px; justify-content: center;">
                     <a href="menu.html" class="btn-cinematic magnet">MUA NGAY</a>
@@ -213,32 +234,32 @@
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">eco</span>
                 <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Giảm phát thải</h3>
-                <p>Quy trình canh tác tiên tiến giúp giảm thiểu tối đa lượng khí nhà kính, bảo vệ môi trường và ứng phó với biến đổi khí hậu.</p>
+                <p>Quy trình canh tác tiên tiến giúp giảm thiểu tối đa lượng khí nhà kính, bảo vệ môi trường và ứng phó với biến đổi khí hậu[cite: 9].</p>
             </div>
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">verified</span>
                 <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Meal Prep & Eat Clean</h3>
-                <p>Phù hợp hoàn hảo cho chế độ ăn uống lành mạnh, dễ dàng chuẩn bị bữa ăn dinh dưỡng mỗi ngày.</p>
+                <p>Phù hợp hoàn hảo cho chế độ ăn uống lành mạnh, dễ dàng chuẩn bị bữa ăn dinh dưỡng mỗi ngày[cite: 9].</p>
             </div>
             <div class="luxury-card reveal magnet">
                 <span class="material-symbols-outlined" style="font-size: 48px; color: var(--rice-gold);">handshake</span>
-                <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Từ hợp tác xã đến trực tiếp người dùng</h3>
-                <p>Kết nối trực tiếp không qua trung gian, đảm bảo chất lượng, minh bạch nguồn gốc và tăng thu nhập cho nông dân.</p>
+                <h3 style="font-family: var(--font-heading); font-size: 36px; margin: 25px 0;">Hợp tác xã xanh</h3>
+                <p>Kết nối trực tiếp không qua trung gian, đảm bảo chất lượng, minh bạch nguồn gốc và tăng thu nhập cho nông dân[cite: 9].</p>
             </div>
         </section>
 
         <section class="section-container">
             <div class="d2c-box reveal">
                 <div class="info-side">
-                    <span style="color: var(--agri-green); letter-spacing: 3px; font-size: 12px; font-weight: 700;">Mô hình D2C</span>
+                    <span style="color: var(--agri-green); letter-spacing: 3px; font-size: 12px; font-weight: 700;">MÔ HÌNH D2C</span>
                     <h2 class="gradient-text" style="font-size: 64px; margin-top: 20px;">Minh bạch   <br> & Tiện lợi</h2>
                     <p style="margin: 40px 0; font-size: 18px; opacity: 0.7;">
-                        Chúng tôi không chỉ cung cấp gạo sạch. Chúng tôi xây dựng một chuỗi giá trị bền vững nơi bạn có thể đồng hành cùng các hợp tác xã nông nghiệp xanh.
+                        Chúng tôi xây dựng một chuỗi giá trị bền vững nơi bạn có thể đồng hành cùng các hợp tác xã nông nghiệp xanh[cite: 9].
                     </p>
                     <ul style="list-style: none; display: grid; gap: 20px;">
-                        <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Giảm chi phí trung gian, mang lại giá trị tốt nhất cho bạn và nông dân.</li>
-                        <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Giao gạo định kỳ, đảm bảo luôn có gạo mới và ngon nhất trong nhà.</li>
-                         <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Nhanh chóng, an toàn và tiện lợi với các cổng thanh toán phổ biến qua ví điện tử.</li>
+                        <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Giảm chi phí trung gian, mang lại giá trị tốt nhất[cite: 9].</li>
+                        <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Giao gạo định kỳ, đảm bảo gạo luôn tươi ngon[cite: 9].</li>
+                         <li style="display: flex; align-items: center; gap: 15px;"><span class="material-symbols-outlined" style="color: var(--rice-gold);">check_circle</span> Thanh toán an toàn, nhanh chóng qua ví điện tử[cite: 9].</li>
                     </ul>
                 </div>
                 <div class="d2c-img-wrap magnet">
@@ -251,7 +272,7 @@
     <footer>
         <div class="footer-logo">KTNN.</div>
         <div style="text-align: right;">
-            <p style="opacity: 0.3; margin-bottom: 20px;">© 2026 Climate Rice Brand. Vì một hành tinh xanh.</p>
+            <p style="opacity: 0.3; margin-bottom: 20px;">© 2026 Climate Rice Brand. Vì một hành tinh xanh[cite: 9].</p>
             <div style="display: flex; gap: 30px; justify-content: flex-end;">
                 <a href="#" style="color: #fff; text-decoration: none; font-size: 12px;">FACEBOOK</a>
                 <a href="#" style="color: #fff; text-decoration: none; font-size: 12px;">INSTAGRAM</a>
