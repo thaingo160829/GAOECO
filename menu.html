@@ -250,24 +250,31 @@
             text-align: center;
         }
 
-        /* --- SUCCESS NOTIFICATION --- */
+        /* --- SUCCESS NOTIFICATION (REFINED) --- */
         .payment-success {
             position: fixed;
-            top: 20px;
+            top: 30px;
             left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--agri-green);
+            transform: translateX(-50%) translateY(-150%);
+            background: linear-gradient(135deg, var(--agri-green), #2d4d3d);
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
+            padding: 16px 32px;
+            border-radius: 100px;
             z-index: 10005;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .payment-success.show { transform: translateX(-50%) translateY(0); }
+        .payment-success.show { 
+            transform: translateX(-50%) translateY(0); 
+            opacity: 1;
+        }
 
         /* --- TRANSACTION HISTORY SECTION --- */
         .history-section {
@@ -363,6 +370,16 @@
             .nav-links { display: none; }
             .cart-panel { width: 100%; right: -100%; }
             .gradient-text { font-size: 42px; }
+            
+            /* Tinh chỉnh Mobile cho thông báo */
+            .payment-success {
+                top: auto;
+                bottom: 100px;
+                width: 90%;
+                font-size: 14px;
+                padding: 14px 20px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -373,7 +390,7 @@
 
     <div class="payment-success" id="successToast">
         <span class="material-symbols-outlined">check_circle</span>
-        Thanh toán đơn hàng thành công!
+        <span>Thanh toán đơn hàng thành công!</span>
     </div>
 
     <nav class="navbar" id="main-nav">
@@ -442,15 +459,12 @@
             </div>
         </div>
 
-        <!-- Lịch sử giao dịch -->
         <div class="history-section reveal" id="historySection" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                 <h3 class="gradient-text" style="font-size: 32px;">Lịch sử giao dịch</h3>
-                <!-- Nút xóa lịch sử (tùy chọn) -->
                 <button onclick="clearHistory()" style="background: transparent; color: rgba(255,255,255,0.3); border: none; font-size: 12px; cursor: pointer; text-decoration: underline;">Xóa tất cả</button>
             </div>
             <div class="history-container" id="historyContainer">
-                <!-- Nội dung lịch sử -->
             </div>
         </div>
 
@@ -545,10 +559,8 @@
         let cart = {};
         let qty = { gao: 1 };
         
-        // Khởi tạo lịch sử từ localStorage[cite: 1]
         let transactionHistory = JSON.parse(localStorage.getItem('eco_rice_history')) || [];
 
-        // Chạy ngay khi web load xong để hiển thị lại lịch sử cũ[cite: 1]
         window.addEventListener('DOMContentLoaded', () => {
             renderHistory();
         });
@@ -610,10 +622,16 @@
             document.getElementById('modal').classList.remove('active');
         }
 
+        /* --- XỬ LÝ HIỆN/ẨN THÔNG BÁO TỰ ĐỘNG --- */
         function confirmOrder() {
+            // Hiển thị thông báo thành công
             const toast = document.getElementById('successToast');
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 4000);
+            
+            // Tự động biến mất sau 3 giây (3000ms)
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
 
             const orderId = "ECO" + Math.floor(Math.random() * 1000000);
             const now = new Date();
@@ -628,9 +646,7 @@
                 });
             }
 
-            // LƯU VÀO LOCALSTORAGE[cite: 1]
             localStorage.setItem('eco_rice_history', JSON.stringify(transactionHistory));
-
             renderHistory();
             
             cart = {};
@@ -661,15 +677,12 @@
                     </div>`;
                 });
                 container.innerHTML = html;
-                
-                // Kích hoạt animation reveal cho lịch sử khi vừa được thêm
                 section.classList.add('active');
             } else {
                 section.style.display = 'none';
             }
         }
 
-        // Hàm xóa lịch sử (Dành cho dev hoặc nếu user muốn)[cite: 1]
         function clearHistory() {
             if(confirm("Xóa toàn bộ lịch sử giao dịch?")) {
                 transactionHistory = [];
