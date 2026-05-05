@@ -89,17 +89,16 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 40px; overflow: hidden;
             backdrop-filter: blur(10px); transition: var(--transition-smooth);
-            margin-bottom: 150px;
+            margin-bottom: 100px;
             position: relative;
-            align-items: center; /* Giúp cân bằng info và image */
+            align-items: center;
         }
 
-        /* CHỈNH SỬA TẠI ĐÂY: Fix khuyết ảnh/chữ trên ảnh */
         .product-image-wrap { 
             flex: 1.2; 
             width: 100%;
             height: auto; 
-            min-height: 500px; /* Đảm bảo khung hình không quá nhỏ */
+            min-height: 500px;
             overflow: hidden; 
             position: relative; 
             display: flex;
@@ -110,9 +109,9 @@
         .product-image-wrap img { 
             width: 100%; 
             height: 100%; 
-            object-fit: contain; /* Thay đổi từ cover sang contain để thấy toàn bộ ảnh và chữ trên ảnh */
+            object-fit: contain;
             transition: transform 2s ease; 
-            padding: 20px; /* Tạo khoảng trống để không sát mép khung */
+            padding: 20px;
         }
         .product-card-cinematic:hover .product-image-wrap img { transform: scale(1.05); }
 
@@ -251,6 +250,64 @@
             text-align: center;
         }
 
+        /* --- SUCCESS NOTIFICATION --- */
+        .payment-success {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--agri-green);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            z-index: 10005;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .payment-success.show { transform: translateX(-50%) translateY(0); }
+
+        /* --- TRANSACTION HISTORY SECTION --- */
+        .history-section {
+            max-width: 1300px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+        }
+        .history-container {
+            background: var(--glass);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .history-item:last-child { border-bottom: none; }
+        .history-info { flex: 1; }
+        .history-id { color: var(--rice-gold); font-family: monospace; font-size: 14px; }
+        .history-date { font-size: 13px; opacity: 0.5; margin-top: 5px; }
+        .btn-contact {
+            padding: 10px 20px;
+            border: 1px solid var(--agri-green);
+            border-radius: 50px;
+            color: var(--agri-green);
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-contact:hover { background: var(--agri-green); color: white; }
+
         /* --- Counter Grid --- */
         .stats-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
@@ -300,7 +357,6 @@
             .product-card-cinematic { flex-direction: column; }
             .product-info { padding: 40px; text-align: center; }
             .product-image-wrap { min-height: 350px; }
-            .product-image-wrap img { padding: 10px; }
             .qty-control { justify-content: center; }
             .story-grid, .stats-grid { grid-template-columns: 1fr; }
             .navbar { padding: 20px; }
@@ -314,6 +370,11 @@
 
     <div class="custom-cursor"></div>
     <div class="cursor-follower"></div>
+
+    <div class="payment-success" id="successToast">
+        <span class="material-symbols-outlined">check_circle</span>
+        Thanh toán đơn hàng thành công!
+    </div>
 
     <nav class="navbar" id="main-nav">
         <a href="index.html" class="logo magnet">GẠO<span>ECO</span></a>
@@ -340,7 +401,7 @@
             </div>
             
             <div class="product-info">
-                <span class="tag" style="letter-spacing: 2px;">Premium Eco Rice</span>
+                <span class="tag" style="letter-spacing: 2px;">Eco Rice</span>
                 <h2 class="gradient-text" style="font-size: 64px;">Gạo Việt Xanh</h2>
                 
                 <div class="flavor-profile">
@@ -378,6 +439,18 @@
                         <span class="material-symbols-outlined">shopping_bag</span>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Lịch sử giao dịch -->
+        <div class="history-section reveal" id="historySection" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h3 class="gradient-text" style="font-size: 32px;">Lịch sử giao dịch</h3>
+                <!-- Nút xóa lịch sử (tùy chọn) -->
+                <button onclick="clearHistory()" style="background: transparent; color: rgba(255,255,255,0.3); border: none; font-size: 12px; cursor: pointer; text-decoration: underline;">Xóa tất cả</button>
+            </div>
+            <div class="history-container" id="historyContainer">
+                <!-- Nội dung lịch sử -->
             </div>
         </div>
 
@@ -423,8 +496,7 @@
             <h3 style="font-family: var(--font-heading); font-size: 28px;">Giỏ hàng của bạn</h3>
             <span class="material-symbols-outlined magnet" onclick="toggleCart()" style="cursor: pointer;">close</span>
         </div>
-        <div id="cartItems" style="max-height: 60vh; overflow-y: auto;">
-            </div>
+        <div id="cartItems" style="max-height: 60vh; overflow-y: auto;"></div>
         <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
             <div style="display: flex; justify-content: space-between; font-size: 20px;">
                 <span>Tổng cộng:</span>
@@ -443,7 +515,7 @@
             <h3 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px; color: var(--rice-gold);">Xác nhận đơn hàng</h3>
             <div id="orderSummary" style="text-align: left; margin-bottom: 30px; opacity: 0.8; line-height: 2;"></div>
             <div style="display: flex; gap: 15px;">
-                <button class="btn-checkout" onclick="confirmOrder()" style="flex: 2;">GỬI QUA ZALO</button>
+                <button class="btn-checkout" onclick="confirmOrder()" style="flex: 2;">XÁC NHẬN</button>
                 <button class="btn-checkout" onclick="closeModal()" style="flex: 1; background: rgba(255,255,255,0.1);">HỦY</button>
             </div>
         </div>
@@ -458,7 +530,7 @@
                 VỀ TRANG CHỦ
             </a>
             <a href="contact.html" class="btn-cinematic magnet" style="padding: 18px 40px; font-size: 14px; letter-spacing: 1px;">
-                HỢP TÁC KINH DOANH
+                ĐỘI NGŨ HỖ TRỢ
                 <span class="material-symbols-outlined" style="font-size: 20px;">handshake</span>
             </a>
         </div>
@@ -472,6 +544,14 @@
         /* --- GIỎ HÀNG LOGIC --- */
         let cart = {};
         let qty = { gao: 1 };
+        
+        // Khởi tạo lịch sử từ localStorage[cite: 1]
+        let transactionHistory = JSON.parse(localStorage.getItem('eco_rice_history')) || [];
+
+        // Chạy ngay khi web load xong để hiển thị lại lịch sử cũ[cite: 1]
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHistory();
+        });
 
         function changeQty(id, delta) {
             qty[id] += delta;
@@ -491,7 +571,6 @@
         function renderCart() {
             let html = '';
             let total = 0;
-
             for (let id in cart) {
                 let item = cart[id];
                 total += item.price * item.qty;
@@ -504,9 +583,7 @@
                     <span style="color: var(--rice-gold);">${(item.price * item.qty).toLocaleString()}đ</span>
                 </div>`;
             }
-
             if (Object.keys(cart).length === 0) html = '<p style="text-align:center; opacity:0.5; margin-top:20px;">Giỏ hàng đang trống</p>';
-
             document.getElementById('cartItems').innerHTML = html;
             document.getElementById('total').innerText = total.toLocaleString();
         }
@@ -534,15 +611,71 @@
         }
 
         function confirmOrder() {
-            let msg = "XIN CHÀO GẠO ECO, TÔI MUỐN ĐẶT HÀNG:\n\n";
-            let total = 0;
+            const toast = document.getElementById('successToast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+
+            const orderId = "ECO" + Math.floor(Math.random() * 1000000);
+            const now = new Date();
+            const dateStr = now.toLocaleString('vi-VN');
+
             for (let id in cart) {
-                let item = cart[id];
-                msg += `+ ${item.name} (x${item.qty})\n`;
-                total += item.price * item.qty;
+                transactionHistory.unshift({
+                    id: orderId,
+                    name: cart[id].name,
+                    qty: cart[id].qty,
+                    time: dateStr
+                });
             }
-            msg += `\nTổng giá trị: ${total.toLocaleString()}đ`;
-            window.open(`https://zalo.me/0846903222?text=${encodeURIComponent(msg)}`);
+
+            // LƯU VÀO LOCALSTORAGE[cite: 1]
+            localStorage.setItem('eco_rice_history', JSON.stringify(transactionHistory));
+
+            renderHistory();
+            
+            cart = {};
+            renderCart();
+            closeModal();
+            toggleCart(false);
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContainer');
+            const section = document.getElementById('historySection');
+            
+            if (transactionHistory.length > 0) {
+                section.style.display = 'block';
+                let html = '';
+                transactionHistory.forEach(item => {
+                    html += `
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div style="font-weight: 500;">${item.name} (x${item.qty})</div>
+                            <div class="history-id">Mã: #${item.id}</div>
+                            <div class="history-date">Ngày giao dịch: ${item.time}</div>
+                        </div>
+                        <a href="https://zalo.me/0972525468" class="btn-contact">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
+                            Liên hệ người bán (Phạm Minh Thịnh)
+                        </a>
+                    </div>`;
+                });
+                container.innerHTML = html;
+                
+                // Kích hoạt animation reveal cho lịch sử khi vừa được thêm
+                section.classList.add('active');
+            } else {
+                section.style.display = 'none';
+            }
+        }
+
+        // Hàm xóa lịch sử (Dành cho dev hoặc nếu user muốn)[cite: 1]
+        function clearHistory() {
+            if(confirm("Xóa toàn bộ lịch sử giao dịch?")) {
+                transactionHistory = [];
+                localStorage.removeItem('eco_rice_history');
+                renderHistory();
+            }
         }
 
         /* --- UI EFFECTS --- */
