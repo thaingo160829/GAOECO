@@ -36,12 +36,12 @@
         /* --- Custom Cursor --- */
         .custom-cursor {
             width: 10px; height: 10px; background: #fff; border-radius: 50%;
-            position: fixed; pointer-events: none; z-index: 9999;
+            position: fixed; pointer-events: none; z-index: 10001;
             mix-blend-mode: difference; transition: transform 0.1s ease-out;
         }
         .cursor-follower {
             width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998;
+            border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000;
             transition: transform 0.2s ease-out;
         }
 
@@ -90,13 +90,33 @@
             border-radius: 40px; overflow: hidden;
             backdrop-filter: blur(10px); transition: var(--transition-smooth);
             margin-bottom: 150px;
+            position: relative;
+            align-items: center; /* Giúp cân bằng info và image */
         }
 
-        .product-image-wrap { flex: 1.2; height: 700px; overflow: hidden; position: relative; }
-        .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 2s ease; }
+        /* CHỈNH SỬA TẠI ĐÂY: Fix khuyết ảnh/chữ trên ảnh */
+        .product-image-wrap { 
+            flex: 1.2; 
+            width: 100%;
+            height: auto; 
+            min-height: 500px; /* Đảm bảo khung hình không quá nhỏ */
+            overflow: hidden; 
+            position: relative; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .product-image-wrap img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* Thay đổi từ cover sang contain để thấy toàn bộ ảnh và chữ trên ảnh */
+            transition: transform 2s ease; 
+            padding: 20px; /* Tạo khoảng trống để không sát mép khung */
+        }
         .product-card-cinematic:hover .product-image-wrap img { transform: scale(1.05); }
 
-        .product-info { flex: 1; padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .product-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
 
         /* --- Flavor Profile UI --- */
         .flavor-profile { margin: 30px 0; }
@@ -104,6 +124,132 @@
         .flavor-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-bottom: 5px; }
         .flavor-bar-bg { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
         .flavor-bar-fill { height: 100%; background: var(--rice-gold); width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* --- Shopping Additions --- */
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--agri-green);
+            border-color: var(--agri-green);
+        }
+
+        .price-tag {
+            font-size: 24px;
+            color: var(--rice-gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* --- CART PANEL --- */
+        .cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(30px);
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+            padding: 40px 30px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .cart-panel.active { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+        }
+
+        .cart-toggle {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            background: var(--rice-gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 9998;
+            box-shadow: 0 10px 30px rgba(217, 184, 106, 0.3);
+            transition: 0.3s;
+        }
+        .cart-toggle:hover { transform: scale(1.1); }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 18px;
+            background: var(--agri-green);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            margin-top: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* --- MODAL --- */
+        .checkout-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            padding: 20px;
+        }
+
+        .checkout-modal.active { display: flex; }
+
+        .modal-box {
+            background: #161616;
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
 
         /* --- Counter Grid --- */
         .stats-grid {
@@ -131,7 +277,7 @@
             text-decoration: none; font-weight: 600; display: inline-flex;
             align-items: center; gap: 15px; border: 2px solid rgba(255,255,255,0.1);
             transition: all 0.4s ease; box-shadow: 0 15px 40px rgba(61,103,81,0.3);
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; cursor: pointer;
         }
         .btn-cinematic::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -152,10 +298,15 @@
 
         @media (max-width: 968px) {
             .product-card-cinematic { flex-direction: column; }
-            .product-info { padding: 40px; }
+            .product-info { padding: 40px; text-align: center; }
+            .product-image-wrap { min-height: 350px; }
+            .product-image-wrap img { padding: 10px; }
+            .qty-control { justify-content: center; }
             .story-grid, .stats-grid { grid-template-columns: 1fr; }
             .navbar { padding: 20px; }
             .nav-links { display: none; }
+            .cart-panel { width: 100%; right: -100%; }
+            .gradient-text { font-size: 42px; }
         }
     </style>
 </head>
@@ -176,7 +327,6 @@
 
     <header class="page-header">
         <div class="blur-orb"></div>
-
         <h1 class="gradient-text reveal">Tinh Hoa Hạt Ngọc</h1>
         <p class="reveal" style="max-width: 650px; margin: 0 auto; opacity: 0.6; font-size: 18px;">
             Mỗi hạt gạo Việt Xanh là một lời cam kết với thiên nhiên, mang trọn hương vị phù sa và tâm huyết của người nông dân Việt.
@@ -208,7 +358,7 @@
                     </div>
                 </div>
 
-                <p style="margin-bottom: 30px; font-size: 17px; color: rgba(255,255,255,0.6); font-weight: 300;">
+                <p style="margin-bottom: 15px; font-size: 17px; color: rgba(255,255,255,0.6); font-weight: 300;">
                     Canh tác theo mô hình tuần hoàn, giảm phát thải carbon. Hạt gạo dài, trắng trong, khi nấu cho cơm thơm dịu và hậu vị ngọt thanh.
                 </p>
                 
@@ -216,11 +366,17 @@
                     175.000 VNĐ <span>/ Túi 5kg</span>
                 </div>
 
+                <div class="qty-control">
+                    <button class="qty-btn magnet" onclick="changeQty('gao', -1)">-</button>
+                    <span id="qty-gao" style="font-size: 20px; font-weight: 600; min-width: 30px; text-align: center;">1</span>
+                    <button class="qty-btn magnet" onclick="changeQty('gao', 1)">+</button>
+                </div>
+
                 <div style="margin-top: 10px;">
-                    <a href="https://zalo.me/0846903222" target="_blank" class="btn-cinematic magnet">
-                        ĐẶT MUA TRẢI NGHIỆM
+                    <button onclick="addToCart('Gạo Việt Xanh', 175000, 'gao')" class="btn-cinematic magnet">
+                        THÊM VÀO GIỎ HÀNG
                         <span class="material-symbols-outlined">shopping_bag</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -262,18 +418,45 @@
         </div>
     </main>
 
-   <!-- Khối CTA dưới cùng đã được đồng nhất phong cách -->
+    <div class="cart-panel" id="cart">
+        <div class="cart-header">
+            <h3 style="font-family: var(--font-heading); font-size: 28px;">Giỏ hàng của bạn</h3>
+            <span class="material-symbols-outlined magnet" onclick="toggleCart()" style="cursor: pointer;">close</span>
+        </div>
+        <div id="cartItems" style="max-height: 60vh; overflow-y: auto;">
+            </div>
+        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <div style="display: flex; justify-content: space-between; font-size: 20px;">
+                <span>Tổng cộng:</span>
+                <span style="color: var(--rice-gold);"><span id="total">0</span>đ</span>
+            </div>
+            <button class="btn-checkout magnet" onclick="checkout()">TIẾN HÀNH THANH TOÁN</button>
+        </div>
+    </div>
+
+    <div class="cart-toggle magnet" onclick="toggleCart()">
+        <span class="material-symbols-outlined" style="color: #000;">shopping_cart</span>
+    </div>
+
+    <div class="checkout-modal" id="modal">
+        <div class="modal-box">
+            <h3 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px; color: var(--rice-gold);">Xác nhận đơn hàng</h3>
+            <div id="orderSummary" style="text-align: left; margin-bottom: 30px; opacity: 0.8; line-height: 2;"></div>
+            <div style="display: flex; gap: 15px;">
+                <button class="btn-checkout" onclick="confirmOrder()" style="flex: 2;">GỬI QUA ZALO</button>
+                <button class="btn-checkout" onclick="closeModal()" style="flex: 1; background: rgba(255,255,255,0.1);">HỦY</button>
+            </div>
+        </div>
+    </div>
+
     <div class="cta-bottom-area reveal">
         <h3 class="gradient-text" style="font-size: 45px; margin-bottom: 20px;">Cùng nhau lan tỏa <br> lối sống bền vững.</h3>
         <p style="margin-bottom: 40px; opacity: 0.6; font-size: 16px;">Nhận ưu đãi 10% cho đơn hàng đầu tiên khi đăng ký thành viên Eco.</p>
         
         <div style="display:flex; justify-content:center; align-items:center; gap:25px; flex-wrap: wrap;">
-            <!-- Nút Về Trang Chủ: Chuyển thành dạng outline đồng nhất -->
-            <a href="index.html" class="btn-outline magnet" style="text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 18px 35px; border-radius: 999px; color: #fff; font-weight: 500; font-size: 14px; transition: all 0.3s ease;">
+            <a href="index.html" class="magnet" style="text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 18px 35px; border-radius: 999px; color: #fff; font-weight: 500; font-size: 14px; transition: all 0.3s ease;">
                 VỀ TRANG CHỦ
             </a>
-
-            <!-- Nút Hợp Tác: Sử dụng cùng class với nút Đặt Mua nhưng đổi màu nhẹ hơn -->
             <a href="contact.html" class="btn-cinematic magnet" style="padding: 18px 40px; font-size: 14px; letter-spacing: 1px;">
                 HỢP TÁC KINH DOANH
                 <span class="material-symbols-outlined" style="font-size: 20px;">handshake</span>
@@ -286,36 +469,106 @@
     </footer>
 
     <script>
-        // 1. Advanced Custom Cursor Logic
+        /* --- GIỎ HÀNG LOGIC --- */
+        let cart = {};
+        let qty = { gao: 1 };
+
+        function changeQty(id, delta) {
+            qty[id] += delta;
+            if (qty[id] < 1) qty[id] = 1;
+            document.getElementById('qty-' + id).innerText = qty[id];
+        }
+
+        function addToCart(name, price, id) {
+            if (!cart[id]) {
+                cart[id] = { name, price, qty: 0 };
+            }
+            cart[id].qty += qty[id];
+            renderCart();
+            toggleCart(true); 
+        }
+
+        function renderCart() {
+            let html = '';
+            let total = 0;
+
+            for (let id in cart) {
+                let item = cart[id];
+                total += item.price * item.qty;
+                html += `
+                <div class="cart-item">
+                    <div>
+                        <div style="font-weight: 600;">${item.name}</div>
+                        <div style="font-size: 12px; opacity: 0.5;">Số lượng: ${item.qty}</div>
+                    </div>
+                    <span style="color: var(--rice-gold);">${(item.price * item.qty).toLocaleString()}đ</span>
+                </div>`;
+            }
+
+            if (Object.keys(cart).length === 0) html = '<p style="text-align:center; opacity:0.5; margin-top:20px;">Giỏ hàng đang trống</p>';
+
+            document.getElementById('cartItems').innerHTML = html;
+            document.getElementById('total').innerText = total.toLocaleString();
+        }
+
+        function toggleCart(forceOpen = null) {
+            const panel = document.getElementById('cart');
+            if (forceOpen === true) panel.classList.add('active');
+            else if (forceOpen === false) panel.classList.remove('active');
+            else panel.classList.toggle('active');
+        }
+
+        function checkout() {
+            if (Object.keys(cart).length === 0) return alert("Giỏ hàng của bạn đang trống!");
+            document.getElementById('modal').classList.add('active');
+            let text = '';
+            for (let id in cart) {
+                let item = cart[id];
+                text += `• ${item.name}: ${item.qty} túi x ${item.price.toLocaleString()}đ\n`;
+            }
+            document.getElementById('orderSummary').innerText = text;
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function confirmOrder() {
+            let msg = "XIN CHÀO GẠO ECO, TÔI MUỐN ĐẶT HÀNG:\n\n";
+            let total = 0;
+            for (let id in cart) {
+                let item = cart[id];
+                msg += `+ ${item.name} (x${item.qty})\n`;
+                total += item.price * item.qty;
+            }
+            msg += `\nTổng giá trị: ${total.toLocaleString()}đ`;
+            window.open(`https://zalo.me/0846903222?text=${encodeURIComponent(msg)}`);
+        }
+
+        /* --- UI EFFECTS --- */
         const cursor = document.querySelector('.custom-cursor');
         const follower = document.querySelector('.cursor-follower');
         
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
             setTimeout(() => {
                 follower.style.left = (e.clientX - 15) + 'px';
                 follower.style.top = (e.clientY - 15) + 'px';
             }, 50);
         });
 
-        // 2. Intersection Observer for Reveal & Counters
         const observerOptions = { threshold: 0.2 };
-        
         const counterFunc = (el) => {
             const target = +el.getAttribute('data-target');
             let count = 0;
-            const speed = 2000 / target;
-            
+            const speed = 2000 / (target || 1);
             const updateCount = () => {
                 if (count < target) {
                     count++;
                     el.innerText = count;
                     setTimeout(updateCount, speed);
-                } else {
-                    el.innerText = target;
-                }
+                } else el.innerText = target;
             };
             updateCount();
         };
@@ -324,8 +577,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    
-                    // Trigger counters if found
                     const counters = entry.target.querySelectorAll('.stat-number');
                     counters.forEach(c => counterFunc(c));
                 }
@@ -334,31 +585,24 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 3. Magnetic Hover Effect (Improved)
         document.querySelectorAll('.magnet').forEach((el) => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-
                 el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
                 follower.style.transform = 'scale(2)';
             });
-
             el.addEventListener('mouseleave', () => {
                 el.style.transform = `translate(0,0)`;
                 follower.style.transform = 'scale(1)';
             });
         });
 
-        // 4. Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
-            if (window.scrollY > 80) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            if (window.scrollY > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
     </script>
 </body>
